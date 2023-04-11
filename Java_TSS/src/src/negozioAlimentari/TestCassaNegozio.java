@@ -1,25 +1,17 @@
 package src.negozioAlimentari;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TestCassaNegozio {
 	public static void main(String[] args) {
 		
-		CassaNegozio cassa = new CassaNegozio();
+		ArrayList<Prodotto> inventario = new ArrayList<>();
+		ArrayList<Prodotto> carrello = new ArrayList<>();
 		
-		Prodotto p1 = new Prodotto("C00001","Pasta Barilla",0.7);
-		Prodotto p2 = new Prodotto("C00002","Latte TappoRosso",1.65);
-		Prodotto p3 = new Prodotto("C00003","Caffe' Lavazza",2.5);
-		Prodotto p4 = new Prodotto("C00004","Caffe' Illy",2.0);
-		Prodotto p5 = new Prodotto("C00005","Biscotti Cioccolato",2.0);
-		Prodotto p6 = new Prodotto("C00006","Vino Rosso",2.0);
+		CassaNegozio cassa = new CassaNegozio(inventario,carrello);
 		
-		cassa.aggiungiProdotto(p1);
-		cassa.aggiungiProdotto(p2);
-		cassa.aggiungiProdotto(p3);
-		cassa.aggiungiProdotto(p4);
-		cassa.aggiungiProdotto(p5);
-		cassa.aggiungiProdotto(p6);
+		cassa.inventario();
 		
 		menuUtente(cassa);
 		
@@ -42,7 +34,7 @@ public class TestCassaNegozio {
 			switch(scelta) {
 				case 1 ->{
 					System.out.println("Inserisci il codice del prodotto che vuoi aggiungere");
-					String cod = sc.nextLine();
+					String cod = sc.next();
 					sc.nextLine();
 					System.out.println("Inserisci la descrizione del prodotto che vuoi aggiungere");
 					String desc = sc.nextLine();
@@ -54,26 +46,24 @@ public class TestCassaNegozio {
 					break;
 				}
 				case 2 ->{
+					System.out.println("metodo da implementare");
+					/*
 					System.out.println("Inserisci il cod del prodotto in promozione");
-					String cod = sc.nextLine();
+					String cod = sc.next();
 					sc.nextLine();
 					System.out.println("Inserisci la % della promozione");
 					int perc = sc.nextInt();
 					sc.nextLine();
-					System.out.println(cassa.promozione(cod, perc));
+					//System.out.println(cassa.promozione(cod, perc));
+					 * */
 					break;
 				} 
 				case 3 ->{
 					System.out.println("Inserisci il codice del prodotto che vuoi comprare");
-					String cod = sc.nextLine();
+					String cod = sc.next();
 					sc.nextLine();
-					System.out.println("Inserisci la descrizione del prodotto che vuoi comprare");
-					String desc = sc.nextLine();
-					System.out.println("Inserisci il prezzo del prodotto che vuoi comprare");
-					double prezzo = sc.nextDouble();
-					sc.nextLine();
-					cassa.aggiungiProdotto(new Prodotto(cod, desc, prezzo));
-					System.out.println("Prodotto aggiunto al carrello");
+					cassa.leggi(cod);
+					System.out.println("Prodotto aggiunto al carrello codice : " + cod);
 					break;
 				} 
 				case 4 ->{
@@ -89,7 +79,6 @@ public class TestCassaNegozio {
 					break;
 				} 
 				case 7 ->{
-					System.out.println("Carrello in ordine alfabetico");
 					cassa.stampaCarrello();
 					break;
 				} 

@@ -5,41 +5,53 @@ import java.util.Collections;
 
 public class CassaNegozio {
 	
-	ArrayList<Prodotto> inventario = new ArrayList<>();
-	ArrayList<Prodotto> carrello = new ArrayList<>();
+	private ArrayList<Prodotto> inventario;
+	private ArrayList<Prodotto> carrello;
+	Prodotto pr;
 	
 	private final int IVA_ALIMENTARI= 4;
+	
+	public CassaNegozio(ArrayList<Prodotto> inventario, ArrayList<Prodotto> carrello) {
+		this.inventario = inventario;
+		this.carrello = carrello;
+	}
+	
+	public void inventario() {
+		
+		inventario.add(new Prodotto("C00001","Pasta Barilla",0.7));
+		inventario.add(new Prodotto("C00002","Latte TappoRosso",1.65));
+		inventario.add(new Prodotto("C00003","Caffe' Lavazza",2.5));
+		inventario.add(new Prodotto("C00004","Caffe' Illy",2.0));
+		inventario.add(new Prodotto("C00005","Biscotti Cioccolato",2.0));
+		inventario.add(new Prodotto("C00006","Vino Rosso",2.0));
+		
+	}
 	
 	public void aggiungiProdotto(Prodotto p) {
 		inventario.add(p);
 	}
 	
-	public String promozione(String cod, int perc) {
-		double prezzoPromo = 0;
-		String msg="";
+	public double sconto (String cod, int perc) {
+		double sconto = 0;
 		for (Prodotto p: inventario) {
 			if(cod.contentEquals(p.getCodUnivoco())) {
-				prezzoPromo = p.getPrezzo()-((p.getPrezzo()*perc)/100);
-				p.setPrezzo(prezzoPromo);
-				msg = "Prodotto in promozione: " + p;
-				break;
-			}else {
-				msg =  "Promozione annullata";
+				sconto = ((p.getPrezzo()*perc)/100);
 			}
 		}
-		return msg;
+		return sconto;
 	}
 	
-	public void leggi(Prodotto p) {
-		for( int i = 0; i < inventario.size(); i++ ){
-		    Prodotto prod = inventario.get( i );
-		    if(prod.equals(p))
-		    {
-		         inventario.remove(p);
-		         carrello.add(p);
-		         i--; 
-		         System.out.println(p);
-		    }  
+	public void promozione(String cod, int perc) {
+		
+	}
+	
+	public void leggi(String cod) {
+		for (int i = 0; i < inventario.size(); i++) {
+			Prodotto p = inventario.get(i);
+			if(p.getCodUnivoco().contentEquals(cod)) {
+				inventario.remove(p);
+				carrello.add(p);
+			}
 		}
 	}
 	
@@ -83,6 +95,5 @@ public class CassaNegozio {
 			System.out.println(p);
 		}
 	}
-	
 	
 }
