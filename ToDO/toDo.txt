@@ -1,10 +1,1 @@
 TO DO:
-
-1- buildare nel progetto libro_NuovoJava gli es del capitolo 3-4-5
-
-2- progetto Java_TSS -> cassaPub, finire l'implementazione
-
-3- progetto Java_TSS -> negozioAlimentari, fixare i bug 
-	- metodo promuovi(), far ritornare il prezzo all'originale
-	
-	  
