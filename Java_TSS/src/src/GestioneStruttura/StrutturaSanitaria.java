@@ -1,15 +1,19 @@
 package src.GestioneStruttura;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class StrutturaSanitaria {
 	
-	ArrayList<Paziente> pazienti = new ArrayList<>();
-	ArrayList<Dottore> dottori = new ArrayList<>();
+	ArrayList<Paziente> pazienti;
+	ArrayList<Dottore> dottori;
+	HashMap<Paziente, Dottore> dbPazientiDottori;
 	
-	public StrutturaSanitaria(ArrayList<Paziente> pazienti,ArrayList<Dottore> dottori) {
+	public StrutturaSanitaria(ArrayList<Paziente> pazienti,ArrayList<Dottore> dottori,
+			HashMap<Paziente, Dottore> dbPazientiDottori ) {
 		this.pazienti= pazienti;
 		this.dottori = dottori;
+		this.dbPazientiDottori = dbPazientiDottori;
 	}
 	
 	public void aggiungiPersona(String nome,String cognome,String codFiscale) {
@@ -18,6 +22,14 @@ public class StrutturaSanitaria {
 	
 	public void aggiungiMedico(String nome,String cognome,String codFiscale, int matricola) {
 		dottori.add(new Dottore(nome, cognome, codFiscale, matricola));
+	}
+	
+	public void assegnaMedico(int matricola, String codFiscale) throws Exception {
+		Paziente p = getPersona(codFiscale);
+		Dottore dott = getMedico(matricola);
+		if(p!=null && dott!=null) {
+			dbPazientiDottori.put(p, dott);
+		}
 	}
 	
 	public Paziente getPersona(String codFiscale) throws Exception{

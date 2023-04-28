@@ -35,7 +35,7 @@ public class Dottore implements Medico {
 
 	@Override
 	public String toString() {
-		return "Dottore= " + nome + cognome + ", codFiscale= " + codFiscale + ", matricola= "
+		return "Dottore: " + nome + " " +  cognome + " CF: " + codFiscale + ", matricola= "
 				+ matricola ;
 	}
 	

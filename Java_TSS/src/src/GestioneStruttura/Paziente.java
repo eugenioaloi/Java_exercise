@@ -1,5 +1,8 @@
 package src.GestioneStruttura;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Paziente implements Persona {
 	
 	private String nome;
@@ -22,6 +25,17 @@ public class Paziente implements Persona {
 	public String getCognome() {
 		return cognome;
 	}
+	
+	@Override
+	public Dottore getMedico(Persona p, HashMap<Paziente, Dottore> dbPazientiDottori) {
+		Dottore d= new Dottore();
+		for(Map.Entry<Paziente,Dottore> el: dbPazientiDottori.entrySet()) {
+			if(el.getKey()==p) {
+				d = el.getValue();
+			}
+		}
+		return d;
+	}
 
 	public String getCodFiscale() {
 		return codFiscale;
@@ -29,10 +43,7 @@ public class Paziente implements Persona {
 
 	@Override
 	public String toString() {
-		return "Paziente= " + nome + cognome + ", codFiscale= " + codFiscale ;
+		return "Paziente: " + nome + " "+ cognome + " CF: " + codFiscale ;
 	}
-
-	
-	
 	
 }
