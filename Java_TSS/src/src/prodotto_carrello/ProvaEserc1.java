@@ -1,4 +1,4 @@
-package prodotto_carrello;
+package src.prodotto_carrello;
 
 public class ProvaEserc1 {
 	public static void main(String[] args) {

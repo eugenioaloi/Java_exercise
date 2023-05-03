@@ -1,4 +1,4 @@
-package prodotto_carrello;
+package src.prodotto_carrello;
 
 import java.util.ArrayList;
 import java.util.List;

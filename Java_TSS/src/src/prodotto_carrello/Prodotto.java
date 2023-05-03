@@ -1,4 +1,4 @@
-package prodotto_carrello;
+package src.prodotto_carrello;
 
 public class Prodotto {
 	
